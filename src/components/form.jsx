@@ -18,6 +18,7 @@ const Form = styled.form`
 const Formulaire = (props) => {
 
     const [task, setTask] = useState({label: "", done: false});
+    const [error, setError] = useState(false);
 
     const handleChange = (e) => {
         setTask({
@@ -28,18 +29,33 @@ const Formulaire = (props) => {
 
     const saveTask = (e) => {
         e.preventDefault();
-        props.addTask(task);
-        setTask({label: "", done: false});
+
+        if (task.label == "" || !task) {
+            setError(true)
+        } else {
+            setError(false);
+            props.addTask(task);
+            setTask({label: "", done: false});
+        }
+
     }
 
+
     return (
-        <Form show={props.show}>
-            <input type="text" placeholder="Intitulé de la tâche" onChange={handleChange} value={task.label}/>
-            <Button
-                label="Ajouter"
-                onClick={saveTask}
-            />
-        </Form>
+        <>
+            <Form show={props.show}>
+                <input type="text" placeholder="Intitulé de la tâche" onChange={handleChange} value={task.label}/>
+                <Button
+                    label="Ajouter"
+                    onClick={saveTask}
+                />
+
+            </Form>
+            {error && (
+                <p className="text-red-800">Veuillez renseigner une tâche</p>
+            )}
+        </>
+
     );
 };
 
