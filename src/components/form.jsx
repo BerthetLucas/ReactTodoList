@@ -33,11 +33,11 @@ const Formulaire = (props) => {
     }
 
     return (
-        <Form show={props.show} onSubmit={saveTask}>
+        <Form show={props.show}>
             <input type="text" placeholder="Intitulé de la tâche" onChange={handleChange} value={task.label}/>
             <Button
                 label="Ajouter"
-                onClick={() => props.addTask(task)}
+                onClick={saveTask}
             />
         </Form>
     );

@@ -18,7 +18,7 @@ const Div = styled.div`
 
 const Task = (props) => {
     const {task: {label, done}, index, complete, remove} = props;
-
+    
     return (
         <Div className={done ? "completed" : ""}>
             <h4>{label}</h4>

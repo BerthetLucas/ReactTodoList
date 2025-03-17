@@ -31,6 +31,7 @@ function App() {
         setTasks((prevTasks) => prevTasks.filter((task, i) => i !== index));
     };
 
+
     return (
         <main className="flex flex-col gap-10">
             <header><h1>TodoList</h1></header>
